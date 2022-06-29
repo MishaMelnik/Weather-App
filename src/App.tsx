@@ -1,9 +1,9 @@
 import React from 'react';
 // COMPONENTS
 import Content from './components/Content/Content';
+import Block from './components/Block/Block';
 // STYLES
 import styled from 'styled-components';
-import Block from './components/Block/Block';
 
 const AppWrapper = styled.div`
   background-color: #f6f6f8;

@@ -23,11 +23,6 @@ const HighlightsSections = styled.div`
   gap: 20px 24px;
   display: flex;
 `;
-const HighlightsMap = styled.div`
-  width: 272px;
-  height: 300px;
-  //background-color: aliceblue;
-`;
 const HighlightsItem = styled.div`
   width: 176px;
   height: 140px;
@@ -178,9 +173,7 @@ const TodayHighlights = () => {
             </HighlightsBox>
           </HighlightsItem>
         </HighlightsSections>
-        <HighlightsMap>
-          <Map />
-        </HighlightsMap>
+        <Map />
       </HighlightsContainer>
     </HighlightsWrapper>
   );

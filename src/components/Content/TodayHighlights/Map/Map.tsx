@@ -1,27 +1,26 @@
-import React, { memo } from 'react';
-import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
-import styled from 'styled-components';
+import React from 'react';
+// PACKAGES
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-const MapWrapper = styled.div`
-  width: 272px;
-  height: 300px;
-`;
+const containerStyle = {
+  width: '272px',
+  height: '300px',
+  borderRadius: '12px',
+  boxShadow: '0 4px 14px -4px rgba(0, 0, 0, 0.25)',
+};
+
+const center = {
+  lat: 34.101151,
+  lng: -118.343719,
+};
 
 const Map = () => {
-  const MapWithAMarker = withScriptjs(
-    withGoogleMap(() => <GoogleMap defaultZoom={10} defaultCenter={{ lat: 34.101151, lng: -118.343719 }} />)
-  );
-
   return (
-    <MapWrapper>
-      <MapWithAMarker
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}&v=3.exp&
-                libraries=geometry,drawing,places`}
-        loadingElement={<div style={{ height: `450px` }} />}
-        containerElement={<div style={{ height: `450px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-      />
-    </MapWrapper>
+    <div>
+      <LoadScript googleMapsApiKey="AIzaSyB5XqdWdKPEm1gVyQ-uFdbA8IlvUWge2Js">
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} />
+      </LoadScript>
+    </div>
   );
 };
-export default memo(Map);
+export default Map;
