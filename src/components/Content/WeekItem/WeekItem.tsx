@@ -9,6 +9,13 @@ const ItemWrapper = styled.li`
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  @media (max-width: 679px) {
+    width: 90px;
+    height: 100px;
+  }
+  @media (max-width: 526px) {
+    width: 100px;
+  }
 `;
 const ItemContainer = styled.div`
   text-align: center;

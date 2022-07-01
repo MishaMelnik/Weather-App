@@ -13,13 +13,7 @@ import icon7 from '../../img/WeekImg/rainy-6.svg';
 // STYLES
 import styled from 'styled-components';
 
-const ContentWrapper = styled.div`
-  width: 950px;
-  height: 100%;
-`;
 const ContentContainer = styled.div`
-  width: 872px;
-  height: 563px;
   margin: 32px 40px 35px 38px;
 `;
 const ContentHeader = styled.div`
@@ -27,7 +21,6 @@ const ContentHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 40px;
   margin-bottom: 40px;
 `;
 const ContentRouter = styled.div`
@@ -35,6 +28,9 @@ const ContentRouter = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 143px;
+  @media (max-width: 679px) {
+    width: 100px;
+  }
 `;
 const ContentPages = styled.span`
   cursor: pointer;
@@ -42,6 +38,9 @@ const ContentPages = styled.span`
   font-weight: 600;
   font-size: 22px;
   line-height: 26px;
+  @media (max-width: 679px) {
+    font-size: 16px;
+  }
   &:hover {
     color: #b9b9b9;
     transition: 0.3s;
@@ -57,6 +56,9 @@ const ContentButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 679px) {
+    width: 70px;
+  }
 `;
 const ContentUnit = styled.button`
   background-color: white;
@@ -68,8 +70,12 @@ const ContentUnit = styled.button`
   font-weight: 600;
   font-size: 20px;
   line-height: 23px;
-  padding: 10px;
+  padding: 8px 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  @media (max-width: 679px) {
+    font-size: 16px;
+    padding: 2px 5px;
+  }
   &:hover {
     color: aliceblue;
     background-color: #b9b9b9;
@@ -84,8 +90,19 @@ const ContentUnit = styled.button`
 `;
 const ContentWeek = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   padding: 0;
   gap: 52px;
+  @media (max-width: 1280px) {
+    gap: 20px;
+  }
+  @media (max-width: 1026px) {
+    padding-left: 10px;
+    gap: 40px;
+  }
+  @media (max-width: 679px) {
+    padding-left: 20px;
+  }
 `;
 const ContentHeadering = styled.div`
   margin-top: 50px;
@@ -107,7 +124,7 @@ const week = [
 
 const Content = () => {
   return (
-    <ContentWrapper>
+    <div>
       <ContentContainer>
         <ContentHeader>
           <ContentRouter>
@@ -127,7 +144,7 @@ const Content = () => {
         <ContentHeadering>Today’s Highlights</ContentHeadering>
         <TodayHighlights />
       </ContentContainer>
-    </ContentWrapper>
+    </div>
   );
 };
 

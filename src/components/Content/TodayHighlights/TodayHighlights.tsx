@@ -8,20 +8,28 @@ import min from '../../../img/HighlightsImg/thermometer2.svg';
 import styled from 'styled-components';
 import Map from './Map/Map';
 
-const HighlightsWrapper = styled.div`
-  height: 300px;
-`;
 const HighlightsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-areas: 's m';
+  @media (max-width: 1024px) {
+    grid-template-areas:
+      'm'
+      's';
+  }
 `;
 const HighlightsSections = styled.div`
-  width: 576px;
-  height: 300px;
+  grid-area: s;
   flex-wrap: wrap;
   gap: 20px 24px;
   display: flex;
+  @media (max-width: 1024px) {
+    padding: 20px 0 0 20px;
+    gap: 20px 60px;
+  }
+  @media (max-width: 868px) {
+    padding: 20px 0 0 0;
+    gap: 20px 10px;
+  }
 `;
 const HighlightsItem = styled.div`
   width: 176px;
@@ -29,6 +37,17 @@ const HighlightsItem = styled.div`
   background-color: #ffffff;
   box-shadow: 0 0 14px -4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
+  @media (max-width: 770px) {
+    width: 165px;
+  }
+  @media (max-width: 679px) {
+    width: 115px;
+    height: 142px;
+  }
+  @media (max-width: 526px) {
+    width: 132px;
+    height: 142px;
+  }
 `;
 const HighlightsBox = styled.div`
   margin: 12px;
@@ -42,6 +61,10 @@ const HighlightsHeader = styled.div`
 const HighlightsSpeed = styled.div`
   margin-top: 24px;
   margin-bottom: 18px;
+  @media (max-width: 526px) {
+    margin-top: 15px;
+    margin-bottom: 18px;
+  }
 `;
 const HighlightsNumber = styled.span`
   margin-right: 4px;
@@ -67,6 +90,9 @@ const HighlightsSunrise = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 526px) {
+    margin-top: 15px;
+  }
 `;
 const HighlightsImg = styled.img`
   width: 32px;
@@ -91,17 +117,31 @@ const HighlightsMin = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 526px) {
+    margin-bottom: 1px;
+  }
+`;
+const HighlightsMap = styled.div`
+  grid-area: m;
 `;
 const HighlightsTwoImg = styled.img`
   padding: 6px 0 0 10px;
   width: 10px;
   height: 28.57px;
+  @media (max-width: 526px) {
+    padding: 2px 0 0 10px;
+    width: 10px;
+    height: 25px;
+  }
 `;
 const HighlightsTemperature = styled.span`
   padding: 0;
   font-weight: 400;
   font-size: 36px;
   line-height: 42px;
+  @media (max-width: 526px) {
+    font-size: 30px;
+  }
 `;
 const HighlightsMax = styled.div`
   width: 70px;
@@ -113,7 +153,7 @@ const HighlightsMax = styled.div`
 
 const TodayHighlights = () => {
   return (
-    <HighlightsWrapper>
+    <div>
       <HighlightsContainer>
         <HighlightsSections>
           <HighlightsItem>
@@ -173,9 +213,11 @@ const TodayHighlights = () => {
             </HighlightsBox>
           </HighlightsItem>
         </HighlightsSections>
-        <Map />
+        <HighlightsMap>
+          <Map />
+        </HighlightsMap>
       </HighlightsContainer>
-    </HighlightsWrapper>
+    </div>
   );
 };
 
