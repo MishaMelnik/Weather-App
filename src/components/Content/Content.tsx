@@ -1,7 +1,13 @@
 import React from 'react';
+// PACKAGE
+import styled from 'styled-components';
 // COMPONENTS
 import WeekItem from './WeekItem/WeekItem';
 import TodayHighlights from './TodayHighlights/TodayHighlights';
+// THEME
+import { size } from '../../styles/theme/sizes';
+import { lightTheme } from '../../styles/theme/colorsLight';
+import { boxShadow } from '../../styles/theme/boxShadow';
 // IMG
 import icon from '../../img/WeekImg/day.svg';
 import icon2 from '../../img/WeekImg/rainy-1.svg';
@@ -10,8 +16,6 @@ import icon4 from '../../img/WeekImg/rainy-3.svg';
 import icon5 from '../../img/WeekImg/rainy-4.svg';
 import icon6 from '../../img/WeekImg/rainy-5.svg';
 import icon7 from '../../img/WeekImg/rainy-6.svg';
-// STYLES
-import styled from 'styled-components';
 
 const ContentContainer = styled.div`
   margin: 32px 40px 35px 38px;
@@ -20,7 +24,6 @@ const ContentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   margin-bottom: 40px;
 `;
 const ContentRouter = styled.div`
@@ -28,7 +31,7 @@ const ContentRouter = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 143px;
-  @media (max-width: 679px) {
+  @media (max-width: ${size.tablet}) {
     width: 100px;
   }
 `;
@@ -38,17 +41,17 @@ const ContentPages = styled.span`
   font-weight: 600;
   font-size: 22px;
   line-height: 26px;
-  @media (max-width: 679px) {
+  @media (max-width: ${size.tablet}) {
     font-size: 16px;
   }
   &:hover {
-    color: #b9b9b9;
+    color: ${lightTheme.generalLightGrayBackgroundColor};
     transition: 0.3s;
     cursor: pointer;
     transform: translateY(-5px);
   }
   &:active {
-    color: black;
+    color: ${lightTheme.generalBlackBackgroundColor};
   }
 `;
 const ContentButtons = styled.div`
@@ -56,55 +59,46 @@ const ContentButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media (max-width: 679px) {
+  @media (max-width: ${size.tablet}) {
     width: 70px;
   }
 `;
 const ContentUnit = styled.button`
-  background-color: white;
   border: none;
   border-radius: 20px;
   text-align: center;
   text-decoration: none;
+  background-color: ${lightTheme.generalWhiteBackgroundColor};
   transition: all 0.25s ease;
   font-weight: 600;
   font-size: 20px;
   line-height: 23px;
   padding: 8px 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-  @media (max-width: 679px) {
+  box-shadow: ${boxShadow.contentButtonsBoxShadow};
+  @media (max-width: ${size.tablet}) {
     font-size: 16px;
     padding: 2px 5px;
   }
   &:hover {
-    color: aliceblue;
-    background-color: #b9b9b9;
+    color: ${lightTheme.contentButtonsColorHover};
+    background-color: ${lightTheme.generalLightGrayBackgroundColor};
     transition: 0.3s;
     cursor: pointer;
     transform: translateY(-5px);
   }
   &:active {
-    color: white;
-    background-color: black;
+    background-color: ${lightTheme.generalBlackBackgroundColor};
   }
 `;
 const ContentWeek = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   padding: 0;
-  gap: 52px;
-  @media (max-width: 1280px) {
-    gap: 20px;
-  }
-  @media (max-width: 1026px) {
-    padding-left: 10px;
-    gap: 40px;
-  }
-  @media (max-width: 679px) {
-    padding-left: 20px;
-  }
+  gap: 38px;
 `;
-const ContentHeadering = styled.div`
+const ContentBodyHeader = styled.div`
   margin-top: 50px;
   margin-bottom: 20px;
   font-weight: 600;
@@ -141,7 +135,7 @@ const Content = () => {
             <WeekItem key={Math.random()} days={day} />
           ))}
         </ContentWeek>
-        <ContentHeadering>Today’s Highlights</ContentHeadering>
+        <ContentBodyHeader>Today’s Highlights</ContentBodyHeader>
         <TodayHighlights />
       </ContentContainer>
     </div>

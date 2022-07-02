@@ -2,15 +2,13 @@ import React from 'react';
 // PACKAGES
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import styled from 'styled-components';
+// SIZES
+import { size } from '../../../../styles/theme/sizes';
 
 const MapWrapper = styled.div`
   width: 272px;
-  height: 300px;
-  @media (max-width: 1280px) {
-    height: 100%;
-  }
-  @media (max-width: 1024px) {
-    height: 300px;
+  height: 320px;
+  @media (max-width: ${size.laptopL}) {
     width: 100%;
   }
 `;

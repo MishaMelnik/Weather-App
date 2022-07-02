@@ -1,55 +1,64 @@
 import React from 'react';
+// PACKAGE
+import styled from 'styled-components';
+// THEME
+import { size } from '../../styles/theme/sizes';
+import { boxShadow } from '../../styles/theme/boxShadow';
+import { lightTheme } from '../../styles/theme/colorsLight';
 // IMG
 import img from '../../img/BlockImg/img_1.svg';
 import homeIcon from '../../img/BlockImg/home_icon.svg';
 import searchIcon from '../../img/BlockImg/search_icon.svg';
 import cloudsIcon from '../../img/BlockImg/cloud.svg';
 import checkoutIcon from '../../img/BlockImg/checkout.svg';
-// STYLES
-import styled from 'styled-components';
 
 const BlockWrapper = styled.div`
   cursor: default;
-  width: 330px;
+  max-width: 330px;
   height: 100%;
-  box-shadow: 5px 0 14px rgba(0, 0, 0, 0.1);
-  @media (max-width: 1280px) {
-    width: 260px;
-  }
-  @media (max-width: 679px) {
-    width: 200px;
-  }
-  @media (max-width: 526px) {
-    width: 100%;
+  padding: 0 25px 0;
+  box-shadow: ${boxShadow.blockBoxShadow};
+  @media (max-width: ${size.mobileL}) {
+    max-width: 556px;
   }
 `;
-const BlockPanel = styled.div`
+const BlockPanelSection = styled.div`
+  padding-top: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 25px 30px;
-  width: 280px;
-  @media (max-width: 1280px) {
-    width: 93%;
-    padding: 30px 5px 0;
+`;
+const BlockCloudSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 260px;
+  margin-top: 35px;
+`;
+const BlockInformationSection = styled.div`
+  @media (max-width: ${size.mobileL}) {
+    display: flex;
+    justify-content: space-between;
   }
-  @media (max-width: 526px) {
-    width: 86%;
-    padding: 30px 20px 0;
+`;
+const BlockCloudsSection = styled.div`
+  border-top: 1px solid #b9b9b9;
+  @media (max-width: ${size.mobileL}) {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
   }
 `;
 const BlockSearchIcon = styled.img`
-  margin: 0 9.79px 0 7.8px;
-  @media (max-width: 679px) {
-    margin: 0 5px 0 7.8px;
-  }
+  margin: 0 5px 0 7px;
 `;
 const BlockHomeIcon = styled.img`
-  background-color: #f3f3f3;
+  background-color: ${lightTheme.blockPanelBackgroundColor};
   transition: all 0.25s ease;
   border-radius: 20px;
+  margin-left: 5px;
   padding: 7.5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  box-shadow: ${boxShadow.panelBoxShadow};
   &:hover {
     color: aliceblue;
     transition: 0.3s;
@@ -57,28 +66,16 @@ const BlockHomeIcon = styled.img`
     transform: translateY(-5px);
   }
   &:active {
-    background-color: #b9b9b9;
+    background-color: ${lightTheme.generalLightGrayBackgroundColor};
   }
 `;
 const BlockSearchLine = styled.div`
-  background-color: #f3f3f3;
+  background-color: ${lightTheme.blockPanelBackgroundColor};
   border-radius: 20px;
-  width: 240px;
+  width: 85%;
   display: flex;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  @media (max-width: 1280px) {
-    width: 190px;
-  }
-  @media (max-width: 1026px) {
-    width: 180px;
-  }
-  @media (max-width: 679px) {
-    width: 150px;
-  }
-  @media (max-width: 526px) {
-    width: 260px;
-  }
+  box-shadow: ${boxShadow.panelBoxShadow};
 `;
 const BlockInput = styled.input`
   outline: none;
@@ -88,44 +85,9 @@ const BlockInput = styled.input`
   font-size: 12px;
   background-color: transparent;
 `;
-const BlockImg = styled.img`
-  width: 212px;
-  height: 185.41px;
-  margin: 65px 60px 38.59px 60px;
-  @media (max-width: 1280px) {
-    margin: 65px 20px 38.59px;
-  }
-  @media (max-width: 679px) {
-    width: 170px;
-    height: 150px;
-    margin: 80px 10px 50px;
-  }
-  @media (max-width: 526px) {
-    width: 212px;
-    height: 150px;
-    margin: 80px 70px 50px;
-  }
-`;
-const BlockBox = styled.div`
-  width: 280px;
-  margin: 0 25px 40px;
-  @media (max-width: 1280px) {
-    width: 200px;
-  }
-  @media (max-width: 679px) {
-    margin: 0 15px 40px;
-    width: 160px;
-  }
-  @media (max-width: 526px) {
-    margin: 0 29px 40px;
-    width: 81%;
-  }
-`;
-const BlockInformationSection = styled.div`
-  @media (max-width: 526px) {
-    display: flex;
-    justify-content: space-between;
-  }
+const BlockCloud = styled.img`
+  width: 130px;
+  height: 140px;
 `;
 const BlockInformation = styled.div`
   display: flex;
@@ -147,18 +109,7 @@ const BlockUnit = styled.span`
 `;
 const BlockDate = styled.div`
   padding-bottom: 16px;
-  @media (max-width: 526px) {
-    margin-top: 10px;
-  }
-  //@media (max-width: 1280px) {
-  //  width: 200px;
-  //}
-  //@media (max-width: 679px) {
-  //  width: 140px;
-  //}
-  //@media (max-width: 526px) {
-  //  width: 100%;
-  //}
+  margin-top: 10px;
 `;
 const BlockDay = styled.span`
   font-weight: 500;
@@ -172,13 +123,6 @@ const BlockTime = styled.span`
   line-height: 21px;
   color: #b9b9b9;
 `;
-const BlockCloudsSection = styled.div`
-  border-top: 1px solid #b9b9b9;
-  @media (max-width: 526px) {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
 const BlockClouds = styled.div`
   display: flex;
   align-items: center;
@@ -188,22 +132,12 @@ const BlockCloudsIcon = styled.img`
   width: 32px;
   height: 19px;
   margin-right: 10px;
-  @media (max-width: 679px) {
-    margin-right: -5px;
-  }
 `;
 const BlockCheckoutIcon = styled.img`
   margin-left: 4px;
   margin-right: 13px;
   width: 24px;
   height: 24px;
-  @media (max-width: 679px) {
-    margin-right: 0;
-  }
-  @media (max-width: 526px) {
-    margin-left: 10px;
-    margin-right: -5px;
-  }
 `;
 const BlockCloudsPercent = styled.span`
   margin-left: 10px;
@@ -212,40 +146,52 @@ const BlockCloudsPercent = styled.span`
   line-height: 19px;
 `;
 
+const information = {
+  temp: 10,
+  time: '13:17',
+  percent: 75,
+  unit: '°C',
+  location: 'Kyiv, UA',
+  day: 'Monday',
+  type: 'Broken clouds',
+};
+
 const Block = () => {
   return (
     <BlockWrapper>
-      <BlockPanel>
+      <BlockPanelSection>
         <BlockSearchLine>
           <BlockSearchIcon src={searchIcon} alt="search icon" />
           <BlockInput placeholder="search for places..." />
         </BlockSearchLine>
         <BlockHomeIcon src={homeIcon} alt="home icon" />
-      </BlockPanel>
-      <BlockImg src={img} alt="logo" />
-      <BlockBox>
+      </BlockPanelSection>
+      <BlockCloudSection>
+        <BlockCloud src={img} alt="logo" />
+      </BlockCloudSection>
+      <div>
         <BlockInformationSection>
           <BlockInformation>
-            <BlockNumber>9</BlockNumber>
-            <BlockUnit>°C</BlockUnit>
+            <BlockNumber>{`${information.temp}`}</BlockNumber>
+            <BlockUnit>{`${information.unit}`}</BlockUnit>
           </BlockInformation>
           <BlockDate>
-            <BlockLocation>Kyiv, UA</BlockLocation>
-            <BlockDay>Monday,</BlockDay>
-            <BlockTime>13:17</BlockTime>
+            <BlockLocation>{`${information.location}`}</BlockLocation>
+            <BlockDay>{`${information.day}, `}</BlockDay>
+            <BlockTime>{`${information.time}`}</BlockTime>
           </BlockDate>
         </BlockInformationSection>
         <BlockCloudsSection>
           <BlockClouds>
             <BlockCloudsIcon src={cloudsIcon} alt="clouds icon" />
-            <BlockCloudsPercent>Clouds - 75%</BlockCloudsPercent>
+            <BlockCloudsPercent>{`Clouds - ${information.percent}%`}</BlockCloudsPercent>
           </BlockClouds>
           <BlockClouds>
             <BlockCheckoutIcon src={checkoutIcon} alt="checkout icon" />
-            <BlockCloudsPercent>Broken clouds</BlockCloudsPercent>
+            <BlockCloudsPercent>{`${information.type}`}</BlockCloudsPercent>
           </BlockClouds>
         </BlockCloudsSection>
-      </BlockBox>
+      </div>
     </BlockWrapper>
   );
 };

@@ -1,44 +1,33 @@
 import React from 'react';
+// PACKAGE
+import styled from 'styled-components';
 // COMPONENTS
 import Content from './components/Content/Content';
 import Block from './components/Block/Block';
-// STYLES
-import styled from 'styled-components';
+// THEME
+import { size } from './styles/theme/sizes';
+import { lightTheme } from './styles/theme/colorsLight';
+import { boxShadow } from './styles/theme/boxShadow';
 
 const AppWrapper = styled.div`
-  background-color: #f6f6f8;
+  background-color: ${lightTheme.appBackgroundColor};
   display: grid;
-  grid-template-areas: 'b c';
-  width: 1280px;
+  grid-template-areas: 'block content';
+  max-width: 1280px;
+  margin: 0 30px;
   border-radius: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-  @media (max-width: 1280px) {
-    width: 1024px;
-  }
-  @media (max-width: 1026px) {
-    width: 800px;
-  }
-  @media (max-width: 868px) {
-    width: 700px;
-  }
-  @media (max-width: 770px) {
-    width: 678px;
-  }
-  @media (max-width: 679px) {
-    width: 525px;
-  }
-  @media (max-width: 526px) {
+  box-shadow: ${boxShadow.appBoxShadow};
+  @media (max-width: ${size.mobileL}) {
     grid-template-areas:
-      'b'
-      'c';
-    width: 350px;
+      'block'
+      'content';
   }
 `;
 const AppBlock = styled.div`
-  grid-area: b;
+  grid-area: block;
 `;
 const AppContent = styled.div`
-  grid-area: c;
+  grid-area: content;
 `;
 
 const App = () => {
