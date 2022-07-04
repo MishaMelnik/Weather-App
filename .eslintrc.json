@@ -24,5 +24,6 @@
         "prettier"
     ],
     "rules": {
+        "no-unused-vars": "warn"
     }
 }
