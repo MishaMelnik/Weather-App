@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 // PACKAGES
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import styled from 'styled-components';
@@ -26,10 +26,10 @@ const center = {
 const Map = () => {
   return (
     <MapWrapper>
-      <LoadScript googleMapsApiKey="AIzaSyB5XqdWdKPEm1gVyQ-uFdbA8IlvUWge2Js">
+      <LoadScript googleMapsApiKey={`${process.env['REACT_APP_GOOGLE_MAPS_KEY']}`}>
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} />
       </LoadScript>
     </MapWrapper>
   );
 };
-export default Map;
+export default memo(Map);

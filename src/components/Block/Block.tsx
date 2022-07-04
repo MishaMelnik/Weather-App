@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // THEME
@@ -157,6 +157,7 @@ const information = {
 };
 
 const Block = () => {
+  const [] = useState();
   return (
     <BlockWrapper>
       <BlockPanelSection>

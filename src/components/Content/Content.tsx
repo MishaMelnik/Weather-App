@@ -16,6 +16,7 @@ import icon4 from '../../img/WeekImg/rainy-3.svg';
 import icon5 from '../../img/WeekImg/rainy-4.svg';
 import icon6 from '../../img/WeekImg/rainy-5.svg';
 import icon7 from '../../img/WeekImg/rainy-6.svg';
+import weatherActions from '../../store/appStores/weatherStore/weatherAction';
 
 const ContentContainer = styled.div`
   margin: 32px 40px 35px 38px;
@@ -126,7 +127,7 @@ const Content = () => {
             <ContentPages>Weeks</ContentPages>
           </ContentRouter>
           <ContentButtons>
-            <ContentUnit>°C</ContentUnit>
+            <ContentUnit onClick={weatherActions.loadWeather}>°C</ContentUnit>
             <ContentUnit>°F</ContentUnit>
           </ContentButtons>
         </ContentHeader>
