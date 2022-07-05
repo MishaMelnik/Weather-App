@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // THEME
@@ -11,6 +11,7 @@ import homeIcon from '../../img/BlockImg/home_icon.svg';
 import searchIcon from '../../img/BlockImg/search_icon.svg';
 import cloudsIcon from '../../img/BlockImg/cloud.svg';
 import checkoutIcon from '../../img/BlockImg/checkout.svg';
+import closeIcon from '../../img/BlockImg/close.svg';
 
 const BlockWrapper = styled.div`
   cursor: default;
@@ -52,6 +53,13 @@ const BlockCloudsSection = styled.div`
 const BlockSearchIcon = styled.img`
   margin: 0 5px 0 7px;
 `;
+const BlockCloseIcon = styled.img`
+  margin: 0 5px 0 3px;
+`;
+const InvisibleBlockCloseIcon = styled.img`
+  margin: 0 5px 0 3px;
+  visibility: hidden;
+`;
 const BlockHomeIcon = styled.img`
   background-color: ${lightTheme.blockPanelBackgroundColor};
   transition: all 0.25s ease;
@@ -75,6 +83,7 @@ const BlockSearchLine = styled.div`
   width: 85%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-shadow: ${boxShadow.panelBoxShadow};
 `;
 const BlockInput = styled.input`
@@ -145,7 +154,6 @@ const BlockCloudsPercent = styled.span`
   font-size: 16px;
   line-height: 19px;
 `;
-
 const information = {
   temp: 10,
   time: '13:17',
@@ -155,14 +163,41 @@ const information = {
   day: 'Monday',
   type: 'Broken clouds',
 };
-
 const Block = () => {
+  const [location, setLocation] = useState('');
+  const mainAddressField = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!mainAddressField.current) {
+      return;
+    }
+
+    const autoComplete = new window.google.maps.places.Autocomplete(mainAddressField.current, {
+      componentRestrictions: { country: 'ua' },
+      fields: ['address_components', 'geometry'],
+    });
+    autoComplete.addListener('place_changed', () => {
+      const addressObject = autoComplete?.getPlace();
+      const lat = addressObject.geometry?.location?.lat();
+      const lng = addressObject.geometry?.location?.lng();
+    });
+  }, [mainAddressField]);
   return (
     <BlockWrapper>
       <BlockPanelSection>
         <BlockSearchLine>
           <BlockSearchIcon src={searchIcon} alt="search icon" />
-          <BlockInput placeholder="search for places..." />
+          <BlockInput
+            ref={mainAddressField}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="search for places..."
+          />
+          {location ? (
+            <BlockCloseIcon onClick={() => setLocation('')} src={closeIcon} alt="close icon" />
+          ) : (
+            <InvisibleBlockCloseIcon src={closeIcon} alt="close icon" />
+          )}
         </BlockSearchLine>
         <BlockHomeIcon src={homeIcon} alt="home icon" />
       </BlockPanelSection>

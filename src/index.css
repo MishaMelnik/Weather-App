@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /*height: 753px;*/
+  min-height: 753px;
   display: flex;
   justify-content: center;
   align-items: center;
