@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type Days = {
   day: string;
   min: number;
@@ -7,10 +9,10 @@ export type Days = {
 export interface IDay {
   days: Days;
 }
+export interface IInputProviderProps {
+  children: React.ReactNode;
+}
 export interface IStoreWeather {
   weather: Array<object>;
-}
-export interface IReducerWeather {
-  type: string;
-  weather: Array<object>;
+  setWeather: any;
 }

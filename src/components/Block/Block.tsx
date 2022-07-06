@@ -1,6 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+// CONTEXT
+import { GlobalContext } from '../../context/GlobalState';
 // PACKAGE
 import styled from 'styled-components';
+// FUNC
+import { getWeather } from '../../functions/getWeather';
 // THEME
 import { size } from '../../styles/theme/sizes';
 import { boxShadow } from '../../styles/theme/boxShadow';
@@ -165,6 +169,8 @@ const information = {
 };
 const Block = () => {
   const [location, setLocation] = useState('');
+  const { weather, setWeather } = useContext(GlobalContext);
+  console.log(weather);
   const mainAddressField = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -180,6 +186,7 @@ const Block = () => {
       const addressObject = autoComplete?.getPlace();
       const lat = addressObject.geometry?.location?.lat();
       const lng = addressObject.geometry?.location?.lng();
+      getWeather(lat, lng, setWeather);
     });
   }, [mainAddressField]);
   return (

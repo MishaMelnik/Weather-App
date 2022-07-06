@@ -4,6 +4,8 @@ import styled from 'styled-components';
 // COMPONENTS
 import WeekItem from './WeekItem/WeekItem';
 import TodayHighlights from './TodayHighlights/TodayHighlights';
+// CONTEXT
+// import { GlobalContext } from '../../context/GlobalState';
 // THEME
 import { size } from '../../styles/theme/sizes';
 import { lightTheme } from '../../styles/theme/colorsLight';
@@ -117,6 +119,8 @@ const week = [
 ];
 
 const Content = () => {
+  // const { weather } = useContext(GlobalContext);
+  // console.log('weather', weather);
   return (
     <div>
       <ContentContainer>
