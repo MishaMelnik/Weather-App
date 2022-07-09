@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // COMPONENTS
@@ -8,8 +8,6 @@ import Block from './components/Block/Block';
 import { size } from './styles/theme/sizes';
 import { lightTheme } from './styles/theme/colorsLight';
 import { boxShadow } from './styles/theme/boxShadow';
-import { GlobalContext } from './context/GlobalState';
-import { getLocation } from './functions/getLocation';
 
 const AppWrapper = styled.div`
   background-color: ${lightTheme.appBackgroundColor};
@@ -33,11 +31,6 @@ const AppContent = styled.div`
 `;
 
 const App = () => {
-  const { setWeather } = useContext(GlobalContext);
-  useEffect(() => {
-    getLocation(setWeather);
-  }, []);
-
   return (
     <AppWrapper>
       <AppBlock>

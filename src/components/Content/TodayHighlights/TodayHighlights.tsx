@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // THEME
@@ -12,6 +12,7 @@ import sunrise from '../../../img/HighlightsImg/up.svg';
 import sunset from '../../../img/HighlightsImg/down.svg';
 import max from '../../../img/HighlightsImg/thermometer1.svg';
 import min from '../../../img/HighlightsImg/thermometer2.svg';
+import { GlobalContext } from '../../../context/GlobalState';
 
 const HighlightsContainer = styled.div`
   display: grid;
@@ -104,7 +105,8 @@ const HighlightsMap = styled.div`
 `;
 const HighlightsDifferenceTemperature = styled.div`
   margin-top: 6px;
-  width: 70px;
+  max-width: 90px;
+  width: 100%;
   height: 42px;
   display: flex;
   justify-content: space-between;
@@ -125,17 +127,8 @@ const HighlightsTemperature = styled.span`
   }
 `;
 
-const information = {
-  numb1: 2,
-  numb2: 10,
-  time1: '07:02',
-  time2: '16:20',
-  unit: '°C',
-  temp1: 7,
-  temp2: 9,
-};
-
 const TodayHighlights = () => {
+  const { currentWeather } = useContext(GlobalContext);
   return (
     <div>
       <HighlightsContainer>
@@ -149,7 +142,7 @@ const TodayHighlights = () => {
             <HighlightsBox>
               <HighlightsHeader>Wind Status</HighlightsHeader>
               <HighlightsSpeed>
-                <HighlightsNumber>{`${information.numb1}`}</HighlightsNumber>
+                <HighlightsNumber>{`${currentWeather[0]?.windSpeed}`}</HighlightsNumber>
                 <HighlightsKm>km/h</HighlightsKm>
               </HighlightsSpeed>
               <HighlightsFooter>Light breeze</HighlightsFooter>
@@ -160,11 +153,11 @@ const TodayHighlights = () => {
               <HighlightsHeader>Sunrise & Sunset</HighlightsHeader>
               <HighlightsDayLength>
                 <HighlightsIcon src={sunrise} alt="sunrise" />
-                <HighlightsTime>{`${information.time1}`}</HighlightsTime>
+                <HighlightsTime>{`${currentWeather[0]?.sunrise}`}</HighlightsTime>
               </HighlightsDayLength>
               <HighlightsDayLength>
                 <HighlightsIcon src={sunset} alt="sunset" />
-                <HighlightsTime>{`${information.time2}`}</HighlightsTime>
+                <HighlightsTime>{`${currentWeather[0]?.sunset}`}</HighlightsTime>
               </HighlightsDayLength>
             </HighlightsBox>
           </HighlightsItem>
@@ -177,7 +170,7 @@ const TodayHighlights = () => {
             <HighlightsBox>
               <HighlightsHeader>Visibility</HighlightsHeader>
               <HighlightsSpeed>
-                <HighlightsNumber>{`${information.numb2}`}</HighlightsNumber>
+                <HighlightsNumber>{`${currentWeather[0]?.visibility}`}</HighlightsNumber>
                 <HighlightsKm>km/h</HighlightsKm>
               </HighlightsSpeed>
               <HighlightsFooter>Good visibility</HighlightsFooter>
@@ -188,11 +181,11 @@ const TodayHighlights = () => {
               <HighlightsHeader>Min&Max temperature</HighlightsHeader>
               <HighlightsDifferenceTemperature>
                 <HighlightsThermometerIcon src={min} alt="sunrise" />
-                <HighlightsTemperature>{`${information.temp1}°`}</HighlightsTemperature>
+                <HighlightsTemperature>{`${currentWeather[0]?.minTemp}°`}</HighlightsTemperature>
               </HighlightsDifferenceTemperature>
               <HighlightsDifferenceTemperature>
                 <HighlightsThermometerIcon src={max} alt="sunset" />
-                <HighlightsTemperature>{`${information.temp2}°`}</HighlightsTemperature>
+                <HighlightsTemperature>{`${currentWeather[0]?.minTemp}°`}</HighlightsTemperature>
               </HighlightsDifferenceTemperature>
             </HighlightsBox>
           </HighlightsItem>
