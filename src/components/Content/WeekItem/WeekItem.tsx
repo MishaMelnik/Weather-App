@@ -6,6 +6,7 @@ import { IDay } from '../../../models/models';
 // THEME
 import { lightTheme } from '../../../styles/theme/colorsLight';
 import { boxShadow } from '../../../styles/theme/boxShadow';
+import { getIcon } from '../../../functions/getIcon';
 
 const ItemWrapper = styled.li`
   list-style: none;
@@ -44,16 +45,17 @@ const ItemDifference = styled.span`
   line-height: 16px;
 `;
 
-const WeekItem = ({ days }: IDay) => {
-  const { day, min, max, img } = days;
+const WeekItem = ({ days }: any) => {
+  // console.log(days);
+  const { day, minTemp, maxTemp, weatherIcon } = days;
   return (
     <ItemWrapper>
       <ItemContainer>
         <ItemDay>{day}</ItemDay>
-        <ItemIcon src={img} alt="icon" />
+        <ItemIcon src={getIcon(weatherIcon)} alt="icon" />
         <ItemTemperature>
-          <ItemDifference>{`${min}° `}</ItemDifference>
-          <ItemDifference>{`${max}° `}</ItemDifference>
+          <ItemDifference>{`${minTemp}° `}</ItemDifference>
+          <ItemDifference>{`${maxTemp}° `}</ItemDifference>
         </ItemTemperature>
       </ItemContainer>
     </ItemWrapper>

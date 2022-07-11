@@ -1,17 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+// CONTEXT
+import { GlobalContext } from '../../context/GlobalState';
 // PACKAGE
 import styled from 'styled-components';
+// FUNC
+import { getWeatherWeek } from '../../functions/getWeatherWeek';
+import { getLocation } from '../../functions/getLocation';
+import { getCurrentWeather } from '../../functions/getCurrentWeather';
 // THEME
 import { size } from '../../styles/theme/sizes';
 import { boxShadow } from '../../styles/theme/boxShadow';
 import { lightTheme } from '../../styles/theme/colorsLight';
 // IMG
-import img from '../../img/BlockImg/img_1.svg';
 import homeIcon from '../../img/BlockImg/home_icon.svg';
 import searchIcon from '../../img/BlockImg/search_icon.svg';
 import cloudsIcon from '../../img/BlockImg/cloud.svg';
 import checkoutIcon from '../../img/BlockImg/checkout.svg';
 import closeIcon from '../../img/BlockImg/close.svg';
+import { getIcon } from '../../functions/getIcon';
 
 const BlockWrapper = styled.div`
   cursor: default;
@@ -95,8 +101,8 @@ const BlockInput = styled.input`
   background-color: transparent;
 `;
 const BlockCloud = styled.img`
-  width: 130px;
-  height: 140px;
+  width: 80%;
+  height: 80%;
 `;
 const BlockInformation = styled.div`
   display: flex;
@@ -153,19 +159,21 @@ const BlockCloudsPercent = styled.span`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+  :first-letter {
+    text-transform: capitalize;
+  }
 `;
 const information = {
-  temp: 10,
-  time: '13:17',
-  percent: 75,
   unit: '°C',
-  location: 'Kyiv, UA',
-  day: 'Monday',
-  type: 'Broken clouds',
 };
 const Block = () => {
   const [location, setLocation] = useState('');
+  const { currentWeather, setCurrentWeather, setWeatherWeek } = useContext(GlobalContext);
   const mainAddressField = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    getLocation(setWeatherWeek, setCurrentWeather);
+  }, []);
 
   useEffect(() => {
     if (!mainAddressField.current) {
@@ -180,6 +188,8 @@ const Block = () => {
       const addressObject = autoComplete?.getPlace();
       const lat = addressObject.geometry?.location?.lat();
       const lng = addressObject.geometry?.location?.lng();
+      getWeatherWeek(lat, lng, setWeatherWeek);
+      getCurrentWeather(lat, lng, setCurrentWeather);
     });
   }, [mainAddressField]);
   return (
@@ -202,28 +212,28 @@ const Block = () => {
         <BlockHomeIcon src={homeIcon} alt="home icon" />
       </BlockPanelSection>
       <BlockCloudSection>
-        <BlockCloud src={img} alt="logo" />
+        <BlockCloud src={getIcon(currentWeather[0]?.weatherIcon)} alt="logo" />
       </BlockCloudSection>
       <div>
         <BlockInformationSection>
           <BlockInformation>
-            <BlockNumber>{`${information.temp}`}</BlockNumber>
+            <BlockNumber>{`${currentWeather[0]?.currentTemp}`}</BlockNumber>
             <BlockUnit>{`${information.unit}`}</BlockUnit>
           </BlockInformation>
           <BlockDate>
-            <BlockLocation>{`${information.location}`}</BlockLocation>
-            <BlockDay>{`${information.day}, `}</BlockDay>
-            <BlockTime>{`${information.time}`}</BlockTime>
+            <BlockLocation>{`${currentWeather[0]?.name}, ${currentWeather[0]?.country}`}</BlockLocation>
+            <BlockDay>{`${currentWeather[0]?.day}, `}</BlockDay>
+            <BlockTime>{`${currentWeather[0]?.time}`}</BlockTime>
           </BlockDate>
         </BlockInformationSection>
         <BlockCloudsSection>
           <BlockClouds>
             <BlockCloudsIcon src={cloudsIcon} alt="clouds icon" />
-            <BlockCloudsPercent>{`Clouds - ${information.percent}%`}</BlockCloudsPercent>
+            <BlockCloudsPercent>{`${currentWeather[0]?.weatherMain} - ${currentWeather[0]?.clouds}%`}</BlockCloudsPercent>
           </BlockClouds>
           <BlockClouds>
             <BlockCheckoutIcon src={checkoutIcon} alt="checkout icon" />
-            <BlockCloudsPercent>{`${information.type}`}</BlockCloudsPercent>
+            <BlockCloudsPercent>{`${currentWeather[0]?.weatherDescription}`}</BlockCloudsPercent>
           </BlockClouds>
         </BlockCloudsSection>
       </div>

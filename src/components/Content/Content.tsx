@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // COMPONENTS
 import WeekItem from './WeekItem/WeekItem';
 import TodayHighlights from './TodayHighlights/TodayHighlights';
+// CONTEXT
+// import { GlobalContext } from '../../context/GlobalState';
 // THEME
 import { size } from '../../styles/theme/sizes';
 import { lightTheme } from '../../styles/theme/colorsLight';
@@ -16,6 +18,7 @@ import icon4 from '../../img/WeekImg/rainy-3.svg';
 import icon5 from '../../img/WeekImg/rainy-4.svg';
 import icon6 from '../../img/WeekImg/rainy-5.svg';
 import icon7 from '../../img/WeekImg/rainy-6.svg';
+import { GlobalContext } from '../../context/GlobalState';
 
 const ContentContainer = styled.div`
   margin: 32px 40px 35px 38px;
@@ -117,6 +120,7 @@ const week = [
 ];
 
 const Content = () => {
+  const { weatherWeek } = useContext(GlobalContext);
   return (
     <div>
       <ContentContainer>
@@ -131,7 +135,7 @@ const Content = () => {
           </ContentButtons>
         </ContentHeader>
         <ContentWeek>
-          {week.map((day) => (
+          {weatherWeek.map((day: any) => (
             <WeekItem key={Math.random()} days={day} />
           ))}
         </ContentWeek>
