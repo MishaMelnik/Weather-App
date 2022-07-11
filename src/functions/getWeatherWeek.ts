@@ -25,10 +25,10 @@ const separation = (data: any) => {
   return arr;
 };
 
-export const getWeatherWeek = async (lat?: number, lng?: number, setWeatherWeek?: any) => {
+export const getWeatherWeek = async (lat?: number, lng?: number, setWeatherWeek?: any, mode = 'metric') => {
   await axios
     .get(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${process.env['REACT_APP_WEATHER_API_KEY']}&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${process.env['REACT_APP_WEATHER_API_KEY']}&units=${mode}`
     )
     .then((data) => {
       const sortedList = sort(data.data.list);

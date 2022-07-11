@@ -32,6 +32,7 @@ export const GlobalProvider = ({ children }: IInputProviderProps) => {
       sunrise: '00:00',
       sunset: '00:00',
     },
+    {},
   ]);
   const [weatherWeek, setWeatherWeek] = useState([]);
   return (

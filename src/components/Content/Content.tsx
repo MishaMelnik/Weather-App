@@ -1,24 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // COMPONENTS
 import WeekItem from './WeekItem/WeekItem';
 import TodayHighlights from './TodayHighlights/TodayHighlights';
 // CONTEXT
-// import { GlobalContext } from '../../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 // THEME
 import { size } from '../../styles/theme/sizes';
 import { lightTheme } from '../../styles/theme/colorsLight';
 import { boxShadow } from '../../styles/theme/boxShadow';
-// IMG
-import icon from '../../img/WeekImg/day.svg';
-import icon2 from '../../img/WeekImg/rainy-1.svg';
-import icon3 from '../../img/WeekImg/rainy-2.svg';
-import icon4 from '../../img/WeekImg/rainy-3.svg';
-import icon5 from '../../img/WeekImg/rainy-4.svg';
-import icon6 from '../../img/WeekImg/rainy-5.svg';
-import icon7 from '../../img/WeekImg/rainy-6.svg';
-import { GlobalContext } from '../../context/GlobalState';
+import { getWeatherWeek } from '../../functions/getWeatherWeek';
+import { getCurrentWeather } from '../../functions/getCurrentWeather';
 
 const ContentContainer = styled.div`
   margin: 32px 40px 35px 38px;
@@ -109,18 +102,18 @@ const ContentBodyHeader = styled.div`
   line-height: 21px;
 `;
 
-const week = [
-  { day: 'Tue', min: 5, max: 8, img: icon },
-  { day: 'Wen', min: 2, max: 6, img: icon2 },
-  { day: 'Thu', min: 3, max: 8, img: icon3 },
-  { day: 'Fri', min: 1, max: 7, img: icon4 },
-  { day: 'Sat', min: 5, max: 8, img: icon5 },
-  { day: 'Sun', min: 2, max: 8, img: icon6 },
-  { day: 'Mon', min: 5, max: 8, img: icon7 },
-];
-
 const Content = () => {
-  const { weatherWeek } = useContext(GlobalContext);
+  const { weatherWeek, currentWeather, setWeatherWeek, setCurrentWeather } = useContext(GlobalContext);
+  const { lon, lat } = currentWeather[0];
+
+  const handleCelsius = () => {
+    getCurrentWeather(lat, lon, setCurrentWeather, 'metric');
+    getWeatherWeek(lat, lon, setWeatherWeek, 'metric');
+  };
+  const handleFahrenheit = () => {
+    getCurrentWeather(lat, lon, setCurrentWeather, 'imperial');
+    getWeatherWeek(lat, lon, setWeatherWeek, 'imperial');
+  };
   return (
     <div>
       <ContentContainer>
@@ -130,8 +123,8 @@ const Content = () => {
             <ContentPages>Weeks</ContentPages>
           </ContentRouter>
           <ContentButtons>
-            <ContentUnit>°C</ContentUnit>
-            <ContentUnit>°F</ContentUnit>
+            <ContentUnit onClick={handleCelsius}>°C</ContentUnit>
+            <ContentUnit onClick={handleFahrenheit}>°F</ContentUnit>
           </ContentButtons>
         </ContentHeader>
         <ContentWeek>
