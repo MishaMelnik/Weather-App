@@ -22,7 +22,6 @@ const containerStyle = {
 
 const Map = () => {
   const { currentWeather } = useContext(GlobalContext);
-  console.log(currentWeather);
   const center = {
     lat: currentWeather[0]?.lat,
     lng: currentWeather[0]?.lon,
