@@ -163,9 +163,6 @@ const BlockCloudsPercent = styled.span`
     text-transform: capitalize;
   }
 `;
-const information = {
-  unit: '°C',
-};
 const Block = () => {
   const [location, setLocation] = useState('');
   const { currentWeather, setCurrentWeather, setWeatherWeek } = useContext(GlobalContext);
@@ -218,7 +215,7 @@ const Block = () => {
         <BlockInformationSection>
           <BlockInformation>
             <BlockNumber>{`${currentWeather[0]?.currentTemp}`}</BlockNumber>
-            <BlockUnit>{`${information.unit}`}</BlockUnit>
+            <BlockUnit>{`${currentWeather[0].mode == 'metric' ? '°C' : '°F'}`}</BlockUnit>
           </BlockInformation>
           <BlockDate>
             <BlockLocation>{`${currentWeather[0]?.name}, ${currentWeather[0]?.country}`}</BlockLocation>

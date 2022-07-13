@@ -9,6 +9,12 @@ export type Days = {
 export interface IDay {
   days: Days;
 }
+export interface ScaleScore {
+  rotates: number;
+}
+export interface HumidityBody {
+  width: number;
+}
 export interface IInputProviderProps {
   children: React.ReactNode;
 }
