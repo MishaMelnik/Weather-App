@@ -1,7 +1,13 @@
+import { Dispatch, SetStateAction } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
-
-export const getCurrentWeather = async (lat?: number, lng?: number, setCurrentWeather?: any, mode = 'metric') => {
+import { CurrentWeather } from '../models/models';
+export const getCurrentWeather = async (
+  lat?: number,
+  lng?: number,
+  setCurrentWeather?: Dispatch<SetStateAction<Array<CurrentWeather>>>,
+  mode = 'metric'
+) => {
   await axios
     .get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env['REACT_APP_WEATHER_API_KEY']}&units=${mode}`

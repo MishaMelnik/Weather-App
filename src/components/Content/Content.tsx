@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 // PACKAGE
 import styled from 'styled-components';
 // COMPONENTS
@@ -10,8 +10,11 @@ import { GlobalContext } from '../../context/GlobalState';
 import { size } from '../../styles/theme/sizes';
 import { lightTheme } from '../../styles/theme/colorsLight';
 import { boxShadow } from '../../styles/theme/boxShadow';
+// FUNC
 import { getWeatherWeek } from '../../functions/getWeatherWeek';
 import { getCurrentWeather } from '../../functions/getCurrentWeather';
+// MODELS
+import { Day } from '../../models/models';
 
 const ContentContainer = styled.div`
   margin: 32px 40px 35px 38px;
@@ -128,8 +131,8 @@ const Content = () => {
           </ContentButtons>
         </ContentHeader>
         <ContentWeek>
-          {weatherWeek.map((day: any) => (
-            <WeekItem key={Math.random()} days={day} />
+          {weatherWeek.map((days: Day) => (
+            <WeekItem key={Math.random()} item={days} />
           ))}
         </ContentWeek>
         <ContentBodyHeader>Today’s Highlights</ContentBodyHeader>
