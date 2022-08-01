@@ -1,47 +1,52 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
-export type Days = {
-  day: string;
-  min: number;
-  max: number;
-  img: string;
+export type Response = {
+  dt_txt: string;
+  main: { temp_max: number; temp_min: number };
+  weather: Array<{ icon: string }>;
 };
-export interface IDay {
-  days: Days;
+export type Day = {
+  day: null | string;
+  minTemp: number;
+  maxTemp: number;
+  weatherIcon: string;
+};
+export type CurrentWeather = {
+  clouds: number;
+  lat: number;
+  lon: number;
+  country: null | string;
+  day: null | string;
+  time: string;
+  currentTemp: number;
+  maxTemp: number;
+  minTemp: number;
+  windSpeed: number;
+  name: null | string;
+  humidity: number;
+  visibility: number;
+  weatherDescription: null | string;
+  weatherIcon: string;
+  weatherMain: null | string;
+  sunrise: string;
+  sunset: string;
+  mode?: string;
+};
+export interface IWeekendDay {
+  item: Day;
 }
-export interface ScaleScore {
+export interface IScaleScore {
   rotates: number;
 }
-export interface HumidityBody {
+export interface IHumidityBody {
   width: number;
 }
 export interface IInputProviderProps {
   children: React.ReactNode;
 }
 export interface IStoreWeather {
-  currentWeather: any;
-  setCurrentWeather: any;
-  weatherWeek: any;
-  setWeatherWeek: any;
+  weatherWeek: Array<Day>;
+  currentWeather: Array<CurrentWeather>;
+  setWeatherWeek: Dispatch<SetStateAction<Array<Day>>>;
+  setCurrentWeather: Dispatch<SetStateAction<Array<CurrentWeather>>>;
 }
-export type cityWeather = {
-  country: string;
-  lat: number;
-  lon: number;
-  name: string;
-  sunrise: string;
-  sunset: string;
-  timezone: string;
-};
-export type listWeather = {
-  clouds: number;
-  currentTemp: number;
-  day: string;
-  maxTemp: number;
-  minTemp: number;
-  time: string;
-  weatherDescription: string;
-  weatherIcon: string;
-  windSpeed: number;
-  weatherMain: string;
-};

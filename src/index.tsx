@@ -1,8 +1,12 @@
 import React from 'react';
+// REACT-DOM
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// COMPONENT
 import App from './App';
+// CONTEXT
 import { GlobalProvider } from './context/GlobalState';
+// STYLES
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

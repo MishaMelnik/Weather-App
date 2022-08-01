@@ -1,19 +1,21 @@
 import React, { useContext } from 'react';
 // PACKAGE
 import styled from 'styled-components';
+// CONTEXT
+import { GlobalContext } from '../../../context/GlobalState';
 // THEME
 import { size } from '../../../styles/theme/sizes';
 import { lightTheme } from '../../../styles/theme/colorsLight';
 import { boxShadow } from '../../../styles/theme/boxShadow';
 // COMPONENTS
 import Map from './Map/Map';
+// MODELS
+import { IHumidityBody, IScaleScore } from '../../../models/models';
 // IMG
 import sunrise from '../../../img/HighlightsImg/up.svg';
 import sunset from '../../../img/HighlightsImg/down.svg';
 import max from '../../../img/HighlightsImg/thermometer1.svg';
 import min from '../../../img/HighlightsImg/thermometer2.svg';
-import { GlobalContext } from '../../../context/GlobalState';
-import { HumidityBody, ScaleScore } from '../../../models/models';
 
 const HighlightsContainer = styled.div`
   display: grid;
@@ -71,7 +73,7 @@ const HighlightsRoadScale = styled.div`
   border-top-right-radius: 100% 200%;
   overflow: hidden;
 `;
-const HighlightsScaleScore = styled('div')<ScaleScore>`
+const HighlightsScaleScore = styled('div')<IScaleScore>`
   position: absolute;
   left: 0;
   top: 100%;
@@ -124,7 +126,7 @@ const HighlightsHumidityScale = styled.div`
   border: 1px solid #c4c4c4;
   border-radius: 12px;
 `;
-const HighlightsHumidityBody = styled('div')<HumidityBody>`
+const HighlightsHumidityBody = styled('div')<IHumidityBody>`
   margin-bottom: 1px;
   height: ${(props) => props.width}px;
   width: 100%;

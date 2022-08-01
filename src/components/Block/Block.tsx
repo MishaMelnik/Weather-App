@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { getWeatherWeek } from '../../functions/getWeatherWeek';
 import { getLocation } from '../../functions/getLocation';
 import { getCurrentWeather } from '../../functions/getCurrentWeather';
+import { getIcon } from '../../functions/getIcon';
 // THEME
 import { size } from '../../styles/theme/sizes';
 import { boxShadow } from '../../styles/theme/boxShadow';
@@ -17,7 +18,6 @@ import searchIcon from '../../img/BlockImg/search_icon.svg';
 import cloudsIcon from '../../img/BlockImg/cloud.svg';
 import checkoutIcon from '../../img/BlockImg/checkout.svg';
 import closeIcon from '../../img/BlockImg/close.svg';
-import { getIcon } from '../../functions/getIcon';
 
 const BlockWrapper = styled.div`
   cursor: default;
@@ -60,6 +60,7 @@ const BlockSearchIcon = styled.img`
   margin: 0 5px 0 7px;
 `;
 const BlockCloseIcon = styled.img`
+  cursor: pointer;
   margin: 0 5px 0 3px;
 `;
 const InvisibleBlockCloseIcon = styled.img`

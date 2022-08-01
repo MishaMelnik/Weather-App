@@ -1,12 +1,13 @@
 import React from 'react';
 // PACKAGE
 import styled from 'styled-components';
-// MODELS
 // THEME
 import { lightTheme } from '../../../styles/theme/colorsLight';
 import { boxShadow } from '../../../styles/theme/boxShadow';
+// FUNC
 import { getIcon } from '../../../functions/getIcon';
-
+// MODELS
+import { IWeekendDay } from '../../../models/models';
 const ItemWrapper = styled.li`
   list-style: none;
   max-width: 80px;
@@ -45,8 +46,8 @@ const ItemDifference = styled.span`
   line-height: 16px;
 `;
 
-const WeekItem = ({ days }: any) => {
-  const { day, minTemp, maxTemp, weatherIcon } = days;
+const WeekItem = ({ item }: IWeekendDay) => {
+  const { day, minTemp, maxTemp, weatherIcon } = item;
   return (
     <ItemWrapper>
       <ItemContainer>
